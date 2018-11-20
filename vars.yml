@@ -1,0 +1,22 @@
+user_home: /home/$user
+ansible_connection: local
+aptcachetime: 3600
+
+conf:
+  path: "{{ playbook_dir }}/conf"
+qbit:
+  service:
+    boot: yes
+    src: "service.conf"
+    dest: "/etc/systemd/system/qbittorrent.service"
+ssh:
+  start: true
+  service_enabled: true
+  password_auth: true
+  root_login: false
+  auth_keys:
+    src: "authorized_keys"
+    dest: "{{ user.home }}/.ssh/authorized_keys"
+user:
+    home: "{{ lookup('env','HOME') }}"
+    name: pi
