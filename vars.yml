@@ -2,8 +2,10 @@ user_home: /home/$user
 ansible_connection: local
 aptcachetime: 3600
 
-conf:
-  path: "{{ playbook_dir }}/conf"
+mopidy:
+  conf:
+    src: "mopidy.conf"
+    dest: "{{ user.home }}/.config/mopidy/mopidy.conf"
 qbit:
   service:
     boot: yes
