@@ -12,5 +12,5 @@
   roles:
     - role: git
     - role: ssh
-    # - role: qbit
+    - role: qbit
     # - role: mopify
