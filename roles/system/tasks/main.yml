@@ -1,0 +1,9 @@
+---
+- name: Install required packages
+  package:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - software-properties-common
+    - python-software-properties
