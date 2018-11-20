@@ -10,7 +10,7 @@
     - vars.yml
 
   roles:
-    # - role: git
-    # - role: ssh
+    - role: git
+    - role: ssh
     # - role: qbit
     # - role: mopify
