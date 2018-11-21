@@ -16,4 +16,4 @@ fi
 ################
 # Run playbook #
 ################
-ansible-playbook playbook.yml --ask-become-pass
+ansible-playbook playbook.yml -b

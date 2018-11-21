@@ -4,7 +4,9 @@
     url: https://apt.mopidy.com/mopidy.gpg
 
 - name: Add Mopidy APT repo to package sources
-  command: sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
+  get_url:
+    url: https://apt.mopidy.com/stretch.list
+    dest: /etc/apt/sources.list.d/mopidy.list
 
 - name: Add Mopidy user
   user:
