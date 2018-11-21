@@ -1,15 +1,8 @@
 #!/bin/bash
-sudo apt-get install software-properties-common -y
 
 ###################
 # Install ansible #
 ###################
-if ! grep -q "ansible/ansible" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
-    echo "Adding Ansible PPA"
-    sudo apt-add-repository ppa:ansible/ansible -y
-    sudo apt-get update
-fi
-
 if ! hash ansible >/dev/null 2>&1; then
     echo "Ansible installation not found !"
     echo "Installing Ansible..."
