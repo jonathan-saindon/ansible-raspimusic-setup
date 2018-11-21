@@ -8,7 +8,6 @@ mopidy:
     dest: "{{ user.home }}/.config/mopidy/mopidy.conf"
 qbit:
   service:
-    boot: yes
     src: "service.conf"
     dest: "/etc/systemd/system/qbittorrent.service"
 ssh:

@@ -22,8 +22,8 @@
     mode: 0777
 
 - name: Activate qBittorrent service
-  systemmd:
+  systemd:
     daemon_reload: yes
-    enabled: {{ qbit.service.boot }}
+    enabled: yes
     state: started
     name: qbittorrent
