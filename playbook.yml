@@ -10,7 +10,6 @@
     - vars.yml
 
   roles:
-    - role: system
     - role: git
     - role: ssh
     - role: qbit
