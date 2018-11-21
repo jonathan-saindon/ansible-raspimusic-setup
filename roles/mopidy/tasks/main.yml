@@ -1,6 +1,7 @@
 ---
 - name: Add Mopidy archive's GPG key
-  command: wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+  apt_key:
+    url: https://apt.mopidy.com/mopidy.gpg
 
 - name: Add Mopidy APT repo to package sources
   command: sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
