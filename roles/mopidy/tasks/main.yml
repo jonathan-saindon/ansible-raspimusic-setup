@@ -20,6 +20,12 @@
     name: mopidy
     state: latest
 
+# Create Mopidy configuration file directory if it doesn't exist
+- file:
+    path: "{{ mopidy.conf.dest }}"
+    state: directory
+    mode: 0755
+
 - name: Copy Mopidy configuration file
   copy:
     src: "{{ mopidy.conf.src }}"
