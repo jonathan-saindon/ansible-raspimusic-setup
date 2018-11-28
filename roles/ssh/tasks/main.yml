@@ -18,3 +18,5 @@
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: 0664
+  args:
+    creates: "{{ ssh.conf.dest }}"

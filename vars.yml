@@ -15,9 +15,11 @@ ssh:
   service_enabled: true
   password_auth: true
   root_login: false
+  conf:
+    dest: "{{ user.home }}/.ssh/"
   auth_keys:
     src: "authorized_keys"
-    dest: "{{ user.home }}/.ssh/authorized_keys"
+    dest: "{{ ssh.conf.dest }}/{{ ssh.auth_keys.src }}"
 user:
     home: "{{ lookup('env','HOME') }}"
     name: pi
