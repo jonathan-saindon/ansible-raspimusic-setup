@@ -19,7 +19,7 @@ ssh:
     dest: "{{ user.home }}/.ssh/"
   auth_keys:
     src: "authorized_keys"
-    dest: "{{ ssh.conf.dest }}/{{ ssh.auth_keys.src }}"
+    dest: "{{ user.home }}/.ssh/authorized_keys"
 user:
     home: "{{ lookup('env','HOME') }}"
     name: pi
