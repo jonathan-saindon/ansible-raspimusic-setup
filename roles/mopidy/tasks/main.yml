@@ -22,11 +22,13 @@
     name: mopidy
     state: latest
 
-# Create Mopidy configuration file directory if it doesn't exist
-# - file:
-#     path: "{{ mopidy.conf.dest }}"
-#     state: directory
-#     mode: 0755
+- name: Create Mopidy configuration directory if it doesn't exist
+  file:
+    path: "{{ mopidy.conf.dest }}"
+    state: directory
+    mode: 0644
+    group: root
+    owner: root
 
 - name: Copy Mopidy configuration file
   copy:
@@ -35,8 +37,6 @@
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: 0664
-  args:
-    creates: "{{ mopidy.conf.dest }}"
 
 - name: Activate Mopidy service
   systemd:

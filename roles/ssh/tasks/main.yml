@@ -11,6 +11,14 @@
 - name: "Ensure SSH is {{ ssh.start | ternary('started','stopped') }}"
   service: name=ssh state={{ ssh.start | ternary('restarted','stopped') }} enabled={{ ssh.service_enabled }}
 
+- name: Create SSH conf directory
+  file:
+    path: "{{ ssh.conf.dest }}"
+    state: directory
+    mode: 0644
+    group: root
+    owner: root
+
 - name: Copy authorized keys file
   copy:
     src: "{{ ssh.auth_keys.src }}"
@@ -18,5 +26,3 @@
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: 0664
-  args:
-    creates: "{{ ssh.conf.dest }}"
