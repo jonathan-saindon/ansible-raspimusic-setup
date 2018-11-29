@@ -1,6 +1,6 @@
-user_home: /home/$user
 ansible_connection: local
 aptcachetime: 3600
+hostname: "raspberrypi-music"
 
 mopidy:
   conf:
@@ -22,4 +22,5 @@ ssh:
     dest: "{{ user.home }}/.ssh/authorized_keys"
 user:
     home: "{{ lookup('env','HOME') }}"
-    name: pi
+    name: "pi"
+    password: "$6$ynphz2vBBCTBDY2T$O.IpK7LgeX8uTi4Bq04BNEm1.AvexqSid9IJGjE.e81Z6DH.3nT6HgtB.xlG/02r1IqVh7PKjSH3C6CrFeJKA."
