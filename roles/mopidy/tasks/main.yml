@@ -29,6 +29,7 @@
     mode: 0644
     group: root
     owner: root
+    when: mopidy.conf.dest.state.exists
 
 - name: Copy Mopidy configuration file
   copy:
