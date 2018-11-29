@@ -6,11 +6,12 @@
 - hosts: local
   connection: local
   become: yes
+  any_errors_fatal: true # Set to true to abort the entire playbook on failure
   vars_files:
     - vars.yml
 
   roles:
-    - role: git
+    - role: system
     - role: ssh
     - role: qbit
     - role: mopidy
