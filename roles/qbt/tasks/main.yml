@@ -4,7 +4,7 @@
     name: qbittorrent-nox
     state: latest
 
-- name: "Add user qBittorrent"
+- name: "Add user {{ qbt.user.name }}"
   user:
     name: "{{ qbt.user.name }}"
     group: null

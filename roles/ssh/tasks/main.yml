@@ -1,5 +1,5 @@
 ---
-- name: Install SSH Server
+- name: "Install SSH Server"
   apt:
     name: openssh-server
     state: latest
@@ -19,15 +19,15 @@
     line: "PermitRootLogin {{ ssh.root_login | ternary('yes','no') }}"
     state: present
 
-- name: "Ensure SSH is started"
-  service:
-    name: ssh
-    state: restarted
-    enabled: true
-
-- name: Add SSH key to authorized_keys
+- name: "Add authorized_keys"
   authorized_key:
     user: "{{ user.name }}"
     key: "{{ item }}"
     state: present
   with_lines: "cat {{ ssh.auth_keys.src }}"
+  
+- name: "Ensure SSH is started"
+  service:
+    name: ssh
+    state: restarted
+    enabled: true

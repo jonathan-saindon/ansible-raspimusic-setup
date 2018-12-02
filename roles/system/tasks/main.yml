@@ -1,29 +1,29 @@
 ---
-- name: update all packages
+- name: "Update all packages"
   apt:
     update_cache: yes
     upgrade: dist
 
-- name: Set hostname
+- name: "Set hostname"
   hostname:
     name: "{{ hostname }}"
 
-- name: Set timezone to EST
+- name: "Set timezone to EST"
   timezone:
     name: America/New_York
 
-- name: Ensure utility present
+- name: "Ensure utility present"
   package:
     name: sshpass
     state: present
 
-- name: Check for default password
+- name: "Check for default password"
   command: sshpass -p raspberry ssh {{ user.name }}@localhost -o NoHostAuthenticationForLocalhost=yes "echo {{ ssh.login_success }}"
   register: try_login
   changed_when: False
   failed_when: False
 
-- name: Set new password for user {{ user.name }}
+- name: "Set new password for user {{ user.name }}"
   user: 
     name: "{{ user.name }}"
     password: "{{ user.password }}"

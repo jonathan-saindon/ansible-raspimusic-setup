@@ -1,17 +1,17 @@
 ---
-- name: Add Mopidy archive's GPG key
+- name: "Add Mopidy archive's GPG key"
   apt_key:
     url: https://apt.mopidy.com/mopidy.gpg
     state: present
 
-- name: Add Mopidy APT repo to package sources
+- name: "Add Mopidy APT repo to package sources"
   get_url:
     url: https://apt.mopidy.com/stretch.list
     dest: /etc/apt/sources.list.d/mopidy.list
 
-- name: Add Mopidy user
+- name: "Add user {{ mopidy.user.name }}"
   user:
-    name: mopidy
+    name: "{{ mopidy.user.name }}"
     group: null
     create_home: no
     shell: /usr/sbin/nologin
@@ -19,12 +19,12 @@
     comment: "Mopidy user"
     state: present
 
-- name: Install Mopidy
+- name: "Install Mopidy"
   package:
     name: mopidy
     state: latest
 
-- name: Create Mopidy configuration directory if it doesn't exist
+- name: "Create Mopidy configuration directory"
   file:
     path: "{{ mopidy.conf.dest }}"
     state: directory
@@ -32,7 +32,7 @@
     owner: "{{ user.name }}"
     mode: 0644
 
-- name: Copy Mopidy configuration file
+- name: "Copy {{ mopidy.conf.src }}"
   copy:
     src: "{{ mopidy.conf.src }}"
     dest: "{{ mopidy.conf.dest }}"
@@ -42,9 +42,20 @@
     mode: 0664
   register: copy_result
 
-- name: Activate Mopidy service
+- name: "State of {{ mopidy.conf.dest }}"
+  debug: 
+    var: copy_result.state
+    verbosity: "0"
+
+- name: "Activate service {{ mopidy.service.name }}"
   systemd:
-    name: mopidy
+    name: "{{ mopidy.service.name }}"
     state: started
     daemon_reload: yes
     enabled: yes
+  register: service_status
+  
+- name: "State of service {{ mopidy.service.name }}"
+  debug: 
+    var: service_status.ActiveState
+    verbosity: "0"

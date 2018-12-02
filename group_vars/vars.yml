@@ -2,9 +2,13 @@ ansible_connection: local
 hostname: "raspberrypi-music"
 
 mopidy:
+  user:
+    name: "mopidy"
   conf:
     src: "mopidy.conf"
     dest: "{{ user.home }}/.config/mopidy/mopidy.conf"
+  service:
+    name: "mopidy"
 qbt:
   service:
     name: "qbittorrent"
