@@ -1,0 +1,40 @@
+---
+- name: "Install qBittorrent"
+  package:
+    name: qbittorrent-nox
+    state: latest
+
+- name: "Add user qBittorrent"
+  user:
+    name: "{{ qbt.user.name }}"
+    group: null
+    create_home: no
+    shell: /usr/sbin/nologin
+    system: yes
+    comment: "qBittorrent client user"
+
+- name: "Copy {{ qbt.service.src }}"
+  copy:
+    src: "{{ qbt.service.src }}"
+    dest: "{{ qbt.service.dest }}"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  register: copy_result
+
+- name: "State of {{ qbt.service.src }}"
+  debug: 
+    var: copy_result.state
+    verbosity: "0"
+
+- name: "Activate service {{ qbt.service.name }}"
+  systemd:
+    name: "{{ qbt.service.name }}"
+    state: started
+    daemon_reload: yes
+    enabled: yes
+
+- name: "State of service {{ qbt.service.name }}"
+  debug: 
+    var: service_status.ActiveState
+    verbosity: "0"
