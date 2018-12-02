@@ -19,11 +19,11 @@
     dest: "{{ qbit.service.dest }}"
     owner: "root"
     group: "root"
-    mode: 0777
+    mode: 0644
 
 - name: Activate qBittorrent service
   systemd:
+    name: qbittorrent
+    state: started
     daemon_reload: yes
     enabled: yes
-    state: started
-    name: qbittorrent

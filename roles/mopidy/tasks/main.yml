@@ -2,6 +2,7 @@
 - name: Add Mopidy archive's GPG key
   apt_key:
     url: https://apt.mopidy.com/mopidy.gpg
+    state: present
 
 - name: Add Mopidy APT repo to package sources
   get_url:
@@ -16,6 +17,7 @@
     shell: /usr/sbin/nologin
     system: yes
     comment: "Mopidy user"
+    state: present
 
 - name: Install Mopidy
   package:
@@ -26,9 +28,9 @@
   file:
     path: "{{ mopidy.conf.dest }}"
     state: directory
-    mode: 0644
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
+    mode: 0644
 
 - name: Copy Mopidy configuration file
   copy:
@@ -36,10 +38,13 @@
     dest: "{{ mopidy.conf.dest }}"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
+    state: present
     mode: 0664
+  register: copy_result
 
 - name: Activate Mopidy service
   systemd:
-    enabled: yes
-    state: started
     name: mopidy
+    state: started
+    daemon_reload: yes
+    enabled: yes
