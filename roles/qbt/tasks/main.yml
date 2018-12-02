@@ -33,6 +33,7 @@
     state: started
     daemon_reload: yes
     enabled: yes
+  register: service_status
 
 - name: "State of service {{ qbt.service.name }}"
   debug: 
