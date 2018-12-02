@@ -15,7 +15,7 @@ ssh:
   conf:
     dest: "{{ user.home }}/.ssh/"
   auth_keys:
-    src: "authorized_keys"
+    src: "group_vars/authorized_keys"
     dest: "{{ user.home }}/.ssh/authorized_keys"
   login_success: "Login Successfull"
 user:

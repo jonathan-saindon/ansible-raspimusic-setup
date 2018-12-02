@@ -30,4 +30,4 @@
     user: "{{ user.name }}"
     key: "{{ item }}"
     state: present
-    with_lines: "cat authorized_keys"
+  with_lines: "cat {{ ssh.auth_keys.src }}"
