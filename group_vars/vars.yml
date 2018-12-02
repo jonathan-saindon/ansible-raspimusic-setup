@@ -1,5 +1,4 @@
 ansible_connection: local
-aptcachetime: 3600
 hostname: "raspberrypi-music"
 
 mopidy:
@@ -11,8 +10,6 @@ qbit:
     src: "service.conf"
     dest: "/etc/systemd/system/qbittorrent.service"
 ssh:
-  start: true
-  service_enabled: true
   password_auth: true
   root_login: false
   conf:
@@ -20,6 +17,7 @@ ssh:
   auth_keys:
     src: "authorized_keys"
     dest: "{{ user.home }}/.ssh/authorized_keys"
+  login_success: "Login Successfull"
 user:
     home: "{{ lookup('env','HOME') }}"
     name: "pi"
