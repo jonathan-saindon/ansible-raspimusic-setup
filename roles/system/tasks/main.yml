@@ -1,3 +1,4 @@
+---
 - name: update all packages
   apt:
     update_cache: yes
@@ -21,11 +22,6 @@
   register: try_login
   changed_when: False
   failed_when: False
-
-- name: Warning new password
-  debug:
-    msg: "Changing default password for user {{ user.name }}"
-  when: "try_login.stdout != ssh['login_success']"
 
 - name: Set new password for user {{ user.name }}
   user: 
