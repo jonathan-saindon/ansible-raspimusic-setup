@@ -26,8 +26,12 @@
     state: present
   with_lines: "cat {{ ssh.auth_keys.src }}"
   
-- name: "Ensure SSH is started"
+- name: "Restart SSH service"
   service:
     name: ssh
     state: restarted
     enabled: true
+  register: service_status
+  changed_when: service_status.changed
+  failed_when: service_status.status.ActiveState != "active"
+  ignore_errors: true

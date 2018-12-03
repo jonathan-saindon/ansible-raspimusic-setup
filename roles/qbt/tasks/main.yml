@@ -21,6 +21,9 @@
     group: "root"
     mode: 0644
   register: copy_result
+  changed_when: copy_result.changed
+  failed_when: copy_result.failed
+  ignore_errors: true
 
 - name: "State of {{ qbt.service.src }}"
   debug: 
@@ -34,8 +37,11 @@
     daemon_reload: yes
     enabled: yes
   register: service_status
+  changed_when: service_status.changed
+  failed_when: service_status.status.ActiveState != "active"
+  ignore_errors: true
 
 - name: "State of service {{ qbt.service.name }}"
   debug: 
-    var: service_status.ActiveState
+    var: service_status.status.ActiveState
     verbosity: "0"

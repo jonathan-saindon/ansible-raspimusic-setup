@@ -41,6 +41,9 @@
     state: present
     mode: 0664
   register: copy_result
+  changed_when: copy_result.changed
+  failed_when: copy_result.failed
+  ignore_errors: true
 
 - name: "State of {{ mopidy.conf.dest }}"
   debug: 
@@ -54,6 +57,9 @@
     daemon_reload: yes
     enabled: yes
   register: service_status
+  changed_when: service_status.changed
+  failed_when: service_status.status.ActiveState != "active"
+  ignore_errors: true
   
 - name: "State of service {{ mopidy.service.name }}"
   debug: 
