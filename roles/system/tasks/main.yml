@@ -4,11 +4,11 @@
     update_cache: yes
     upgrade: dist
 
-- name: "Set hostname"
+- name: "Set Hostname"
   hostname:
     name: "{{ hostname }}"
 
-- name: "Set timezone to EST"
+- name: "Set Timezone to EST"
   timezone:
     name: America/New_York
 
@@ -20,7 +20,7 @@
 - name: "Check for default password"
   command: sshpass -p raspberry ssh {{ user.name }}@localhost -o NoHostAuthenticationForLocalhost=yes "echo {{ ssh.login_success }}"
   register: try_login
-  changed_when: False
+  changed_when: "try_login.stdout == ssh['login_success']"
   failed_when: False
 
 - name: "Set new password for user {{ user.name }}"

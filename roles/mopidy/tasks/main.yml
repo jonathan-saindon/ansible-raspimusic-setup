@@ -63,5 +63,5 @@
   
 - name: "State of service {{ mopidy.service.name }}"
   debug: 
-    var: service_status.ActiveState
+    var: service_status.status.ActiveState
     verbosity: "0"

@@ -7,9 +7,9 @@
 - name: "Add user {{ qbt.user.name }}"
   user:
     name: "{{ qbt.user.name }}"
-    group: null
-    create_home: no
+    groups: "{{ user.name }}"
     shell: /usr/sbin/nologin
+    create_home: no
     system: yes
     comment: "qBittorrent client user"
 
@@ -19,7 +19,7 @@
     dest: "{{ qbt.service.dest }}"
     owner: "root"
     group: "root"
-    mode: 0644
+    mode: 0664
   register: copy_result
   changed_when: copy_result.changed
   failed_when: copy_result.failed
