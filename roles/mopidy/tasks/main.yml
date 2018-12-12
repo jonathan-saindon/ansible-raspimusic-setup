@@ -30,16 +30,16 @@
     state: directory
     group: "{{ user.name }}"
     owner: "{{ user.name }}"
-    mode: 0644
+    mode: 0755
 
-- name: "Copy {{ mopidy.conf.src }}"
+- name: "Copy Mopidy configuration file"
   copy:
     src: "{{ mopidy.conf.src }}"
     dest: "{{ mopidy.conf.dest }}"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     state: present
-    mode: 0664
+    mode: 0644
   register: copy_result
   changed_when: copy_result.changed
   failed_when: copy_result.failed
