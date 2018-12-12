@@ -12,6 +12,14 @@
     create_home: no
     system: yes
     comment: "qBittorrent client user"
+    
+- name: "Create qBittorrent configuration directory"
+  file:
+    path: "{{ qbt.conf.dest }}"
+    state: directory
+    group: "{{ user.name }}"
+    owner: "{{ user.name }}"
+    mode: 0644
 
 - name: "Copy {{ qbt.service.src }}"
   copy:

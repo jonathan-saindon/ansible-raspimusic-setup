@@ -11,6 +11,8 @@ mopidy:
   service:
     name: "mopidy"
 qbt:
+  conf:
+    dest: "{{ user.home }}/.config/qBittorent"
   service:
     name: "qbittorrent"
     src: "service.conf"
