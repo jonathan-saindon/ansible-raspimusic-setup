@@ -49,6 +49,20 @@
     var: copy_result.state
     verbosity: "0"
 
+- name: "Install Mopidy extensions"
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - Mopidy-AudioAddict
+    - Mopidy-GMusic
+    - Mopidy-Local-SQLite
+    - Mopidy-Moped
+    - Mopidy-Podcast-iTunes
+    - Mopidy-TuneIn
+    - Mopidy-YouTube
+  ignore_errors: true
+
 - name: "Activate service {{ mopidy.service.name }}"
   systemd:
     name: "{{ mopidy.service.name }}"
