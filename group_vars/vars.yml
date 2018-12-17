@@ -7,8 +7,8 @@ mopidy:
     name: "mopidy"
   conf:
     src: "mopidy.conf"
-    dest: "{{ user.home }}/.config/mopidy/mopidy.conf"
-    dir: "{{ user.home }}/.config/mopidy/"
+    dest: "/etc/mopidy/mopidy.conf"
+    # dir: "{{ user.home }}/.config/mopidy/"
   service:
     name: "mopidy"
 qbt:

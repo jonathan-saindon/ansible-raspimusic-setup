@@ -24,13 +24,13 @@
     name: mopidy
     state: latest
 
-- name: "Create Mopidy configuration directory"
-  file:
-    path: "{{ mopidy.conf.dir }}"
-    state: directory
-    group: "{{ user.name }}"
-    owner: "{{ user.name }}"
-    mode: 0755
+# - name: "Create Mopidy configuration directory"
+#   file:
+#     path: "{{ mopidy.conf.dir }}"
+#     state: directory
+#     group: "{{ user.name }}"
+#     owner: "{{ user.name }}"
+#     mode: 0755
 
 - name: "Copy Mopidy configuration file"
   copy:
