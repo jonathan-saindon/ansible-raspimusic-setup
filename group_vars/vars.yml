@@ -2,36 +2,6 @@ ansible_connection: local
 hostname: "raspberrypi-music"
 service_dir: "/etc/systemd/system"
 
-mopidy:
-  user:
-    name: "mopidy"
-  conf:
-    src: "mopidy.conf"
-    dest: "/etc/mopidy/mopidy.conf"
-    # dir: "{{ user.home }}/.config/mopidy/"
-  service:
-    name: "mopidy"
-qbt:
-  conf:
-    src: "qbt.conf"
-    dest: "/home/qbtuser/.config/qBittorrent/qBittorrent.conf"
-    dir: "/home/qbtuser/.config/qBittorrent/"
-  service:
-    name: "qbittorrent"
-    src: "service.conf"
-    dest: "{{ service_dir }}/qbittorrent.service"
-  user:
-    name: "qbtuser"
-    home: "/home/qbtuser"
-ssh:
-  password_auth: true
-  root_login: false
-  conf:
-    dest: "{{ user.home }}/.ssh/"
-  auth_keys:
-    src: "group_vars/authorized_keys"
-    dest: "{{ user.home }}/.ssh/authorized_keys"
-  login_success: "Login Successfull"
 user:
     home: "{{ lookup('env','HOME') }}"
     name: "pi"

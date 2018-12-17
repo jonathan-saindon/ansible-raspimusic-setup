@@ -8,6 +8,7 @@
   become: yes
   any_errors_fatal: true # Set to true to abort the entire playbook on failure
   vars_files:
+    - group_vars/apps.yml
     - group_vars/vars.yml
 
   roles:
