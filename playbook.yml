@@ -12,7 +12,7 @@
     - group_vars/vars.yml
 
   roles:
-    - role: system
+    - role: system # Keep first
     - role: ssh
     - role: qbt
     - role: mopidy

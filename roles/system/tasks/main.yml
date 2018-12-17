@@ -4,6 +4,13 @@
     update_cache: yes
     upgrade: dist
 
+- name: "Install additional packages"
+  apt:
+    name: 
+      - libxml2-dev
+      - libxslt1-dev
+    state: present
+
 - name: "Set Hostname"
   hostname:
     name: "{{ hostname }}"
