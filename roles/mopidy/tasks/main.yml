@@ -26,7 +26,7 @@
 
 - name: "Create Mopidy configuration directory"
   file:
-    path: "{{ mopidy.conf.dest }}"
+    path: "{{ mopidy.conf.dir }}"
     state: directory
     group: "{{ user.name }}"
     owner: "{{ user.name }}"

@@ -7,26 +7,27 @@
 - name: "Add user {{ qbt.user.name }}"
   user:
     name: "{{ qbt.user.name }}"
+    state: present
     groups: "{{ user.name }}"
-    shell: /usr/sbin/nologin
-    create_home: no
+    # shell: /usr/sbin/nologin
+    create_home: yes
     system: yes
     comment: "qBittorrent client user"
     
 - name: "Create qBittorrent configuration directory"
   file:
-    path: "{{ qbt.conf.dest }}"
+    path: "{{ qbt.conf.dir }}"
     state: directory
-    group: "{{ user.name }}"
     owner: "{{ user.name }}"
+    group: "{{ qbt.user.name }}"
     mode: 0755
 
 - name: "Copy qBittorrent configuration file"
   copy:
     src: "{{ qbt.service.src }}"
     dest: "{{ qbt.service.dest }}"
-    owner: "root"
-    group: "root"
+    owner: "{{ user.name }}"
+    group: "{{ qbt.user.name }}"
     mode: 0644
   register: copy_result
   changed_when: copy_result.changed
