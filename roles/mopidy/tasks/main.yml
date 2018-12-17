@@ -51,16 +51,15 @@
 
 - name: "Install Mopidy extensions"
   pip:
-    name: "{{ item }}"
+    name:
+      - Mopidy-AudioAddict
+      - Mopidy-GMusic
+      - Mopidy-Local-SQLite
+      - Mopidy-Moped
+      - Mopidy-Podcast-iTunes
+      - Mopidy-TuneIn
+      - Mopidy-YouTube
     state: present
-  with_items:
-    - Mopidy-AudioAddict
-    - Mopidy-GMusic
-    - Mopidy-Local-SQLite
-    - Mopidy-Moped
-    - Mopidy-Podcast-iTunes
-    - Mopidy-TuneIn
-    - Mopidy-YouTube
   ignore_errors: true
 
 - name: "Activate service {{ mopidy.service.name }}"
