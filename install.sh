@@ -3,21 +3,15 @@
 ###################
 # Install ansible #
 ###################
-if ! hash ansible >/dev/null 2>&1; then
-    echo "Ansible installation not found !"
-    echo "Installing Ansible and all its dependencies..."
+echo "Installing Ansible and all its dependencies..."
+sudo apt-get install -y libffi-dev python-setuptools python-dev python-pip >> install.log
 
-    sudo apt-get install -y libffi-dev python-setuptools >> /dev/null
-    sudo easy_install python-pip >> install.log
+echo "Initial install can take several minutes"
+sudo pip install pynacl pyyaml bcrypt ansible >> install.log
 
-    echo "Initial install can take several minutes"
+echo "Done"
 
-    sudo easy_install PyYAML ansible >> install.log
-
-    echo "Done"
-
-    ansible --version
-fi
+ansible --version
 
 ################
 # Run playbook #
