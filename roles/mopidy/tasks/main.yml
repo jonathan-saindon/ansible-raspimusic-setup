@@ -70,7 +70,7 @@
     enabled: yes
   register: service_status
   changed_when: service_status.changed
-  failed_when: service_status.status.ActiveState != "active"
+  # failed_when: service_status.status.ActiveState != "active"
   ignore_errors: true
   
 - name: "State of service {{ mopidy.service.name }}"
